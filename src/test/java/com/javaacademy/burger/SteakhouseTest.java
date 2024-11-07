@@ -16,6 +16,7 @@ class SteakhouseTest {
     Waitress waitress;
     Kitchen kitchen;
     PayTerminal payTerminal;
+
     @BeforeEach
     public void setUp() {
         waitress = new Waitress();
@@ -66,10 +67,12 @@ class SteakhouseTest {
         Paycheck paycheckFake = new Paycheck(BigDecimal.valueOf(700), Currency.RUB, DishType.RIBS);
 
         Mockito.doReturn(paycheckFake).when(steakhouseSpy.makeOrder(DishType.RIBS, Currency.RUB));
-
+        Mockito.when(steakhouseSpy.makeOrder(DishType.RIBS, Currency.RUB)).thenReturn(paycheckFake);
 
         Paycheck paycheck1 = steakhouseSpy.makeOrder(DishType.RIBS, Currency.RUB);
-        System.out.println(paycheck1);
+
+        Assertions.assertEquals();
+
     }
 
 
